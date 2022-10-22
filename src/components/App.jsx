@@ -5,53 +5,31 @@ import Search from './Search.js';
 import searchYouTube from '../lib/searchYouTube.js';
 // import React, { useState } from 'react';
 
-const { useState } = React;
-
-// var youtubeData;
-// searchYouTube('cats', (data, youtubeData) => {
-
-//   youtubeData = data;
-//   console.log('youtubeDataInner', youtubeData);
-// });
-
-// console.log('youtubeData', youtubeData);
+const { useState, useEffect } = React;
 
 var App = () => {
 
+  const [allVideos, setAllVideos] = useState([{}]);
+  const [currentVideo, setCurrentVideo] = useState(exampleVideoData[0]);
+  // Initial value set up and only run one time
+  useEffect(() => {
+    searchYouTube('cat', (data) => {
+      setAllVideos(data);
+      setCurrentVideo(data[0]);
+    });
+  }, []);
 
-  var youtubeData;
-  searchYouTube('cats', (data) => {
-
-    youtubeData = data;
-    console.log('youtubeDataInner', youtubeData);
-  });
-
-  console.log('youtubeData', youtubeData);
-
-  //useEffect
-  // call searchYouTube
-
-
-  const [allVideos, setAllVideos] = useState([]);
-  // const [allVideos, setAllVideos] = useState(exampleVideoData);
-  const [currentVideo, setCurrentVideo] = useState(youtubeData[0]);
-  // const [currentVideo, setCurrentVideo] = useState(exampleVideoData[0]);
-
-  // var youtubeData;
-  // searchYouTube('cats', (data) => {
-
-  //   youtubeData = data;
-  //   console.log('youtubeDataInner', youtubeData);
-  // });
-
-  // console.log('youtubeData', youtubeData);
-
+  // After click "Search" for a new input, currentVideo will be the first element of allVideos
+  // Will pass it to videoPlayer
+  useEffect(()=>{
+    setCurrentVideo(allVideos[0]);
+  }, allVideos);
 
   return (
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em><Search /></h5></div>
+          <div><h5><em>search</em><Search searchClickHandler = {setAllVideos}/></h5></div>
         </div>
       </nav>
       <div className="row">

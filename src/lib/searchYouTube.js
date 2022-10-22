@@ -23,10 +23,6 @@ var searchYouTube = (query, callback) => {
     callback(data);
   }
   );
-
-  // function (data) {
-  //   callback(data);
-  // }
 };
 
 export default searchYouTube;
