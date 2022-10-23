@@ -29,15 +29,18 @@ var App = () => {
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em><Search searchClickHandler = {setAllVideos}/></h5></div>
+          {/* <div><h5><em>search</em><Search searchClickHandler = {setAllVideos}/></h5></div> */}
+          <Search searchClickHandler = {setAllVideos}/>
         </div>
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <div><h5><em>videoPlayer</em> <VideoPlayer video={currentVideo} /></h5></div>
+          {/* <div><h5><em>videoPlayer</em> <VideoPlayer video={currentVideo} /></h5></div> */}
+          <VideoPlayer video={currentVideo} />
         </div>
         <div className="col-md-5">
-          <div><h5><em>videoList</em> <VideoList videos={allVideos} videoClickHandler={setCurrentVideo} /></h5></div>
+          {/* <div><h5><em>videoList</em> <VideoList videos={allVideos} videoClickHandler={setCurrentVideo} /></h5></div> */}
+          <VideoList videos={allVideos} videoClickHandler={setCurrentVideo} />
         </div>
       </div>
     </div>
